@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  python-sgx:
+    image: ritesh-enclaive/python-sgx
+    container_name: "python-sgx"
+    build:
+      context: .
+    devices:
+      - "/dev/sgx_enclave:/dev/sgx_enclave"
+
+  python-nosgx:
+    image: ritesh-enclaive/python-sgx
+    container_name: "python-nosgx"
+    build:
+      context: .
+    entrypoint: ""
+    command: "python3 /app/main.py"
+    devices:
+      - "/dev/sgx_enclave:/dev/sgx_enclave"
